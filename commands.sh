@@ -1,4 +1,5 @@
 pip install -r requirements.txt
+!pip install --upgrade --no-cache-dir gdown
 # PointNet++
 git clone https://github.com/erikwijmans/Pointnet2_PyTorch.git
 cd Pointnet2_PyTorch/pointnet2_ops_lib
