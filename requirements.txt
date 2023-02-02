@@ -1,4 +1,4 @@
 open3d
-python-open3d
+open3d-python
 torch
 numpy
