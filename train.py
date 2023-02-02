@@ -13,8 +13,10 @@ from util.model_util import save_model
 train_data = PCNDataset()
 val_data = PCNDataset("val")
 
-train_dataloader = DataLoader(train_data, batch_size=2, shuffle=True)
-val_dataloader = DataLoader(val_data, batch_size=2, shuffle=True)
+BATCH_SIZE = 4
+
+train_dataloader = DataLoader(train_data, batch_size=BATCH_SIZE, shuffle=True)
+val_dataloader = DataLoader(val_data, batch_size=BATCH_SIZE, shuffle=True)
 
 input_size = 2048 * 3
 hidden_size = 1024
@@ -36,7 +38,7 @@ print("Training on", device)
 model.to(device)
 
 num_epochs = 20
-patience = 10
+patience = 3
 best_loss = float("inf")
 early_stopping = 0
 

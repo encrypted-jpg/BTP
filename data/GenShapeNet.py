@@ -13,8 +13,8 @@ test_files = int(args["test"])
 train_files = int(args["train"])
 val_files = int(args["val"])
 
-original = "ShapeNetCompletion"
-folder = "ShapeNetCompletion2"
+original = "PCN"
+folder = "PCN2"
 original = os.path.join(os.getcwd(), original)
 folder = os.path.join(os.getcwd(), folder)
 
@@ -43,51 +43,14 @@ def makedirs():
 
 def copy(source_folder, dest):
 	for file_name in os.listdir(source_folder):
-	    # construct full file path
-	    source = os.path.join(source_folder, file_name)
-	    destination = os.path.join(dest, file_name)
-	    if os.path.isfile(source):
-	        shutil.copy(source, destination)
-	        if not os.path.isfile(destination):
-	        	shutil.copy(source, destination)
-	        # print('copied', file_name)
-
-
-def copy_partial(count, from_folder):
-	print("Copying Partial Files from", from_folder, count)
-	ff = os.path.join(original, os.path.join(from_folder, "partial"))
-	tf = os.path.join(folder, os.path.join(from_folder, "partial"))
-	flist = os.listdir(ff)
-	for x in flist:
-		cnt = 0
-		os.mkdir(os.path.join(tf, x))
-		for y in list(os.listdir(os.path.join(ff, x))):
-			if cnt < count:
-				os.mkdir(os.path.join(tf, os.path.join(x, y)))
-				copy(os.path.join(ff, os.path.join(x, y)), os.path.join(tf, os.path.join(x, y)))
-				jdict[tdict[x]][from_folder].append(y)
-				cnt += 1
-			else:
-				break
-
-def copy_complete(count, from_folder):
-	print("Copying Complete Files from", from_folder, count)
-	ff = os.path.join(original, os.path.join(from_folder, "complete"))
-	tf = os.path.join(folder, os.path.join(from_folder, "complete"))
-	flist = os.listdir(ff)
-	for x in flist:
-		cnt = 0
-		os.mkdir(os.path.join(tf, x))
-		for y in list(os.listdir(os.path.join(ff, x))):
-			if cnt < count:
-				try:
-					shutil.copy(os.path.join(ff, os.path.join(x, y)), os.path.join(tf, os.path.join(x, y)))
-					print(os.path.join(tf, os.path.join(x, y)))
-				except:
-					print("Copy Error")
-				cnt += 1
-			else:
-				break
+		# construct full file path
+		source = os.path.join(source_folder, file_name)
+		destination = os.path.join(dest, file_name)
+		if os.path.isfile(source):
+			shutil.copy(source, destination)
+			if not os.path.isfile(destination):
+				shutil.copy(source, destination)
+			# print('copied', file_name)
 
 def copy_data(count, from_folder):
 	print("Copying Files from", from_folder, count)
@@ -167,5 +130,5 @@ json_object = json.dumps(jdict, indent=4)
  
 # Writing to sample.json
 with open("PCN.json", "w") as outfile:
-    outfile.write(json_object)
+	outfile.write(json_object)
 

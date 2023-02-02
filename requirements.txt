@@ -2,3 +2,4 @@ open3d
 open3d-python
 torch
 numpy
+transforms3d

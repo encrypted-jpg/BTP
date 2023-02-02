@@ -16,7 +16,9 @@ from util.pcd_util import save_pcd
 
 test_data = PCNDataset("test")
 
-test_dataloader = DataLoader(test_data, batch_size=2, shuffle=True)
+BATCH_SIZE = 4
+
+test_dataloader = DataLoader(test_data, batch_size=BATCH_SIZE, shuffle=True)
 
 input_size = 2048 * 3
 hidden_size = 1024
@@ -37,7 +39,7 @@ print("Training on", device)
 model.to(device)
 
 test_output = os.path.join(os.getcwd(), "test_output")
-SAVE_FILES = True
+SAVE_FILES = False
 
 if not os.path.exists(test_output) and SAVE_FILES:
     os.makedirs(test_output)
